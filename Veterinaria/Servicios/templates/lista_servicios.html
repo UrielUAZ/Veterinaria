@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+<title>{% block titulo %}Lista de servicios{% endblock %}</title>
+
+{% block breadcumbs%}
+
+          <li class="breadcrumb-item">
+            <a href="{% url 'lista_servicios'%}">Lista de Servicios</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'nuevo_servicio'%}">Agregar servicio</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'lista_tipo_servicio'%}">Lista de tipos de servicio</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'nuevo_tipo_servicio'%}">Agregar tipo de servicio</a>
+          </li>
+{% endblock %}
+
+
+{% block contenido %}
+
+
+
+
+<h1>LISTA DE SERVICIOS</h1>
+
+
+<div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Lista de servicios</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+			        <th>Id       </th>
+			        <th>Tipo     </th>
+              <th>Precio   </th>
+			        <th>Editar  </th>
+                    <th>Eliminar  </th>
+		      </tr>
+              </thead>
+              <tfoot>
+                <tr>
+			        <th>Id       </th>
+			        <th>Tipo     </th>
+			        <th>Editar  </th>
+              <th>Precio   </th>
+              <th>Eliminar  </th>
+                </tr>
+              </tfoot>
+              <tbody>
+              	{% for servicio in servicios %}
+			      <tr>
+				    <td>{{servicio.id}}</td>
+				    <td>{{servicio.nombre}}</td>
+            <td>{{servicio.precio}}</td>
+				    <td>
+				        <a href="{% url 'editar_servicio' pk=servicio.id %}">Editar</a>
+				    </td>
+				    <td>
+					    <a href="{% url 'eliminar_servicio' pk=servicio.id %}">Eliminar</a>
+				    </td>
+
+			      </tr>
+		        {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+{% endblock %}

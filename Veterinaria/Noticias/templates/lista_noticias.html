@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+<title>{% block titulo %}Lista de noticias{% endblock %}</title>
+
+{% block breadcumbs%}
+
+          <li class="breadcrumb-item">
+            <a href="{% url 'lista_noticias'%}">Lista de Noticias</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'nueva_noticia'%}">Agregar noticia</a>
+          </li>
+{% endblock %}
+
+
+{% block contenido %}
+
+
+
+
+<h1>LISTA DE NOTICIAS</h1>
+
+
+<div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Lista de noticias</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTableNoticias" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+			        <th>Id       </th>
+			        <th>Noticia  </th>
+              <th>Editar  </th>
+              <th>Eliminar  </th>
+		      </tr>
+              </thead>
+              <tfoot>
+                <tr>
+			        <th>Id       </th>
+			        <th>Noticia  </th>
+              <th>Editar  </th>
+              <th>Eliminar  </th>
+                </tr>
+              </tfoot>
+              <tbody>
+            {% for noticia in noticias %}
+			        <tr>
+				      <td>{{noticia.id}}</td>
+				      <td>{{noticia.nombre}}</td>
+				      <td>
+				          <a href="{% url 'editar_noticia' pk=noticia.id %}">Editar</a>
+				      </td>
+				      <td>
+					      <a href="{% url 'eliminar_noticia' pk=noticia.id %}">Eliminar</a>
+				      </td>
+
+			        </tr>
+		        {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+{% endblock %}

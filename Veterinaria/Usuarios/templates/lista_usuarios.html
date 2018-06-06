@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+<title>{% block titulo %}Lista de usuarios{% endblock %}</title>
+
+{% block breadcumbs%}
+
+          <li class="breadcrumb-item">
+            <a href="{% url 'lista_usuarios'%}">Lista de Usuarios</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'nuevo_usuario'%}">Agregar usuario</a>
+          </li>
+{% endblock %}
+
+
+{% block contenido %}
+
+
+
+
+<h1>LISTA DE ARTICULOS</h1>
+
+
+<div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Lista de usuarios</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+			        <th>Username       </th>
+			        <th>Nombre         </th>
+			        <th>Apellido       </th>
+			        <th>Email          </th>
+			        <th>Telefono       </th>
+			        <th>Editar  </th>
+                    <th>Eliminar  </th>
+		      </tr>
+              </thead>
+              <tfoot>
+                <tr>
+			        <th>Username       </th>
+			        <th>Nombre         </th>
+			        <th>Apellido       </th>
+			        <th>Email          </th>
+			        <th>Telefono       </th>
+			        <th>Editar  </th>
+                    <th>Eliminar  </th>
+                </tr>
+              </tfoot>
+              <tbody>
+              	{% for usuario in usuarios %}
+			      <tr>
+				    <td>{{usuario.username}}</td>
+				    <td>{{usuario.first_name}}</td>
+				    <td>{{usuario.last_name}}</td>
+				    <td>{{usuario.email}}</td>
+				    <td>{{usuario.telefono}}</td>
+				    <td>
+				        <a href="{% url 'editar_usuario' pk=usuario.id %}">Editar</a>
+				    </td>
+				    <td>
+					    <a href="{% url 'eliminar_usuario' pk=usuario.id %}">Eliminar</a>
+				    </td>
+
+			      </tr>
+		        {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+<title>{% block titulo %}Nueva cita{% endblock %}</title>
+
+
+{% block breadcumbs%}
+
+          <li class="breadcrumb-item">
+            <a href="{% url 'lista_citas'%}">Lista de citas</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'nueva_cita'%}">Agregar cita</a>
+          </li>
+          
+{% endblock %}
+
+
+
+{% block contenido %}
+
+<h1>Alta de citas</h1>
+	<form action="" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Guardar</button>
+		<a href="{% url 'lista_citas' %}"></a>
+	</form>
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+<title>{% block titulo %}Editar usuario{% endblock %}</title>
+
+{% block breadcumbs%}
+
+          <li class="breadcrumb-item">
+            <a href="{% url 'lista_usuarios'%}">Lista de Usuarios</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'nuevo_usuario'%}">Agregar usuario</a>
+          </li>
+{% endblock %}
+
+{% block contenido %}
+
+<h1>Editar usuario</h1>
+	<form action="" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Guardar cambios</button>
+		<a href="{% url 'lista_usuarios' %}"></a>
+	</form>
+
+
+{% endblock %}

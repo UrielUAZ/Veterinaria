@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+<title>{% block titulo %}Nuevo servicio{% endblock %}</title>
+
+
+{% block breadcumbs%}
+
+          <li class="breadcrumb-item">
+            <a href="{% url 'lista_servicios'%}">Lista de Servicios</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'nuevo_servicio'%}">Agregar servicio</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'lista_tipo_servicio'%}">Lista de tipos de servicio</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'nuevo_tipo_servicio'%}">Agregar tipo de servicio</a>
+          </li>
+{% endblock %}
+
+
+
+{% block contenido %}
+
+<h1>Alta de servicios</h1>
+	<form action="" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Guardar</button>
+		<a href="{% url 'lista_servicios' %}"></a>
+	</form>
+
+
+{% endblock %}

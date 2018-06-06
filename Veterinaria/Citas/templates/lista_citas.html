@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+<title>{% block titulo %}Lista de citas{% endblock %}</title>
+
+{% block breadcumbs%}
+
+          <li class="breadcrumb-item">
+            <a href="{% url 'lista_citas'%}">Lista de citas</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'nueva_cita'%}">Agregar cita</a>
+          </li>
+{% endblock %}
+
+
+{% block contenido %}
+
+
+
+
+<h1>LISTA DE CITAS</h1>
+
+
+<div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Lista de citas</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                  <tr>
+			                <th>Usuario       </th>
+			                <th>Servicio      </th>
+                      <th>Fecha         </th>
+                      <th>Hora          </th>
+			                <th>Editar        </th>
+                      <th>Eliminar  </th>
+		              </tr>
+              </thead>
+              <tfoot>
+                  <tr>
+                      <th>Usuario       </th>
+                      <th>Servicio      </th>
+                      <th>Fecha         </th>
+                      <th>Hora          </th>
+                      <th>Editar        </th>
+                      <th>Eliminar  </th>
+                  </tr>
+              </tfoot>
+              <tbody>
+              	{% for cita in citas %}
+			      <tr>
+				    <td>{{cita.usuario}}</td>
+				    <td>{{cita.servicio}}</td>
+            <td>{{cita.fecha}}</td>
+            <td>{{cita.hora}}</td>
+				    <td>
+				        <a href="{% url 'editar_cita' pk=cita.id %}">Editar</a>
+				    </td>
+				    <td>
+					    <a href="{% url 'eliminar_cita' pk=cita.id %}">Eliminar</a>
+				    </td>
+
+			      </tr>
+		        {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+{% endblock %}
